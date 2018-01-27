@@ -1,0 +1,11 @@
+parameters:
+
+services:
+  product_manager:
+    class: AppBundle\Manager\ProductManager
+    arguments:
+      - '@doctrine.orm.entity_manager'
+  comment_manager:
+    class: AppBundle\Manager\CommentManager
+    arguments:
+      - '@doctrine.orm.entity_manager'

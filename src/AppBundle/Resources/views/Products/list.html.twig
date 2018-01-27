@@ -1,0 +1,15 @@
+{% extends "AppBundle::base.html.twig" %}
+
+{% block title %}
+Liste des produits
+{% endblock %}
+
+{% block content %}
+<div class="row">
+{% for product in products %}
+    <product-item id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}"></product-item>
+{% endfor %}
+</div>
+
+Page : {{ page }}
+{% endblock %}

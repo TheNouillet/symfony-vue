@@ -1,0 +1,16 @@
+{% extends "AppBundle:vue:base.html.twig" %}
+
+{% block componentId %}product-item{% endblock %}
+
+{% block template %}
+    <div class="col-md-6">
+        <div class="product-item">
+            <p>Name: ${name}</p>
+            <p>Price: ${price}</p>
+            <p>Nombre de commentaire: 
+                <span v-if="loading">Loading...</span>
+                <span v-else>${commentCount}</span>
+            </p>
+        </div>
+    </div>
+{% endblock %}
