@@ -5,10 +5,15 @@ Liste des produits
 {% endblock %}
 
 {% block content %}
-{# <div class="row">
-{% for product in products %}
-    <product-item id="{{ product.id }}" name="{{ product.name }}" price="{{ product.price }}"></product-item>
-{% endfor %}
-</div> #}
-<product-list products="{{ json_encode(serializeEntities(products)) }}"></product-list>
+<p>Total de {{ totalProductCount }} produits</p>
+{{ form_start(form) }}
+{{ form_label(form.minPrice) }}
+{{ form_widget(form.minPrice) }}
+{{ form_label(form.maxPrice) }}
+{{ form_widget(form.maxPrice) }}
+{{ form_widget(form.submit) }}
+{{ form_end(form) }}
+
+<product-list products="{{ json_encode(serializeEntities(products)) }}" min-price="{{ form.vars.value.minPrice|default(0) }}" max-price="{{ form.vars.value.maxPrice|default(100) }}"></product-list>
+
 {% endblock %}

@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use AppBundle\Entity\ProductSearch;
+use AppBundle\Form\ProductSearchType;
 
 /**
  * Controller qui sert les pages produits
@@ -24,12 +26,19 @@ class ProductsController extends Controller
         /** @var \AppBundle\Manager\ProductManager $manager */
         $manager = $this->get("product_manager");
 
+        $search = new ProductSearch();
+        $form = $this->createForm(ProductSearchType::class, $search);
+        $form->handleRequest($request);
+
         // On récupère les produits de la base de données
-        $products = $manager->getProductsByPage(1);
+        $products = $manager->searchProductsByPage($search, 1);
+        $totalProductCount = $manager->seachProductsCount($search);
 
         // On renvoie la page
         return $this->render("AppBundle:Products:list.html.twig", array(
-            "products" => $products
+            "products" => $products,
+            "totalProductCount" => $totalProductCount,
+            "form" => $form->createView()
         ));
     }
 
@@ -46,9 +55,12 @@ class ProductsController extends Controller
         $manager = $this->get("product_manager");
 
         $page = $request->query->get("page", 1);
+        $search = new ProductSearch();
+        $form = $this->createForm(ProductSearchType::class, $search);
+        $form->handleRequest($request);
 
         // On récupère les produits de la base de données
-        $products = $manager->getProductsByPage($page);
+        $products = $manager->searchProductsByPage($search, $page);
 
         return new JsonResponse(array(
             "page" => $page,

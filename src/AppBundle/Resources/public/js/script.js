@@ -1,7 +1,7 @@
 Vue.component("product-list", {
     template: "#product-list",
     delimiters: ['${', '}'],
-    props: ["products"],
+    props: ["products", "minPrice", "maxPrice"],
     data: function() {
         return {
             productList: JSON.parse(this.products),
@@ -18,7 +18,14 @@ Vue.component("product-list", {
     
                 // setTimeout pour simuler un long chargement
                 setTimeout(() => {
-                    this.$http.get('/products.json?page=' + this.page).then((response) => {
+                    var params = {
+                        "page": this.page,
+                        "product_search[minPrice]": this.minPrice,
+                        "product_search[maxPrice]": this.maxPrice
+                    };
+                    var url = RequestHelper.buildHttpRequest("/products.json", params);
+
+                    this.$http.get(url).then((response) => {
                         response.json().then((data) => {
                             if(data.products.length == 0) {
                                 this.hasMore = false;
