@@ -5,10 +5,10 @@
 {% block template %}
     <div class="col-md-6">
         <div class="product-item">
-            <p>Name: ${name}</p>
-            <p>Price: ${price}</p>
+            <p>Nom: ${product.name}</p>
+            <p>Prix: ${product.price}</p>
             <p>Nombre de commentaire: 
-                <span v-if="loading">Loading...</span>
+                <span v-if="loading">Chargement...</span>
                 <span v-else>${commentCount}</span>
             </p>
         </div>

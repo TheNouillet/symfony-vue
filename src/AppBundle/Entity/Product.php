@@ -126,4 +126,18 @@ class Product
 
         return $this;
     }
+
+    /**
+     * Renvoie l'objet sous forme de tableau
+     *
+     * @return array
+     */
+    public function serialize()
+    {
+        return array(
+            "id" => $this->getId(),
+            "name" => $this->getName(),
+            "price" => $this->getPrice()
+        );
+    }
 }

@@ -1,0 +1,9 @@
+{% extends "AppBundle:vue:base.html.twig" %}
+
+{% block componentId %}product-list{% endblock %}
+
+{% block template %}
+    <div class="row">
+        <product-item v-for="product in productList" :key="product.id" v-bind:product="product"></product-item>
+    </div>
+{% endblock %}

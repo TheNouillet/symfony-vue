@@ -1,7 +1,18 @@
+Vue.component("product-list", {
+    template: "#product-list",
+    delimiters: ['${', '}'],
+    props: ["products"],
+    data: function() {
+        return {
+            productList: JSON.parse(this.products)
+        };
+    }
+});
+
 Vue.component("product-item", {
     template: "#product-item",
     delimiters: ['${', '}'],
-    props: ['id', 'name', 'price'],
+    props: ['product'],
     data: function() {
         return {
             commentCount: null,
@@ -10,7 +21,7 @@ Vue.component("product-item", {
     },
     methods: {
         setCommentCount: function() {
-            this.$http.get('/comments/' + this.id).then((response) => {
+            this.$http.get('/comments/' + this.product.id).then((response) => {
                 response.json().then((data) => {
                     this.commentCount = data.commentCount;
                     this.loading = false;
