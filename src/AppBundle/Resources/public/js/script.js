@@ -4,8 +4,36 @@ Vue.component("product-list", {
     props: ["products"],
     data: function() {
         return {
-            productList: JSON.parse(this.products)
+            productList: JSON.parse(this.products),
+            busy: false,
+            page: 1,
+            hasMore: true
         };
+    },
+    methods: {
+        loadMore: function() {
+            if(this.hasMore) {
+                this.busy = true;
+                this.page++;
+    
+                // setTimeout pour simuler un long chargement
+                setTimeout(() => {
+                    this.$http.get('/products.json?page=' + this.page).then((response) => {
+                        response.json().then((data) => {
+                            if(data.products.length == 0) {
+                                this.hasMore = false;
+                            } else {
+                                this.productList = this.productList.concat(data.products);
+                            }
+                            this.busy = false;
+                        }, (response) => {
+                            this.hasMore = false;
+                            this.busy = false;
+                        });
+                    });
+                }, 1000);
+            }
+        }
     }
 });
 
@@ -25,7 +53,7 @@ Vue.component("product-item", {
                 response.json().then((data) => {
                     this.commentCount = data.commentCount;
                     this.loading = false;
-                })
+                });
             }, (response) => {
                 this.commentCount = 0;
                 this.loading = false;

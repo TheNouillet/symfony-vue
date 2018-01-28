@@ -3,7 +3,9 @@
 {% block componentId %}product-list{% endblock %}
 
 {% block template %}
-    <div class="row">
+    <div class="row" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
         <product-item v-for="product in productList" :key="product.id" v-bind:product="product"></product-item>
+        <span v-if="busy">Chargement</span>
+        <span v-if="!hasMore">Plus de produits</span>
     </div>
 {% endblock %}
