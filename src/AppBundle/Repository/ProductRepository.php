@@ -8,7 +8,7 @@ use AppBundle\Entity\ProductSearch;
 class ProductRepository extends BaseRepository
 {
     /**
-     * Undocumented function
+     * Prépare une requête de recherche de produit
      *
      * @param ProductSearch $search
      * @return \Doctrine\ORM\QueryBuilder

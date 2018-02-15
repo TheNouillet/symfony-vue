@@ -51,11 +51,12 @@ Vue.component("product-item", {
     data: function() {
         return {
             commentCount: null,
-            loading: true
+            loading: false
         };
     },
     methods: {
         setCommentCount: function() {
+            this.loading = true;
             this.$http.get('/comments/' + this.product.id).then((response) => {
                 response.json().then((data) => {
                     this.commentCount = data.commentCount;
