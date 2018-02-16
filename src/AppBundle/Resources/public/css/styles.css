@@ -4,3 +4,7 @@
     padding: 10px;
     margin-bottom: 20px;
 }
+
+.product-item.active {
+    background-color: #8ce400;
+}

@@ -1,3 +1,11 @@
+import Vue from "vue";
+import VueResource from 'vue-resource';
+import VueInfiniteScroll from 'vue-infinite-scroll';
+import RequestHelper from "./RequestHelper";
+
+Vue.use(VueResource);
+Vue.use(VueInfiniteScroll);
+
 Vue.component("product-list", {
     template: "#product-list",
     delimiters: ['${', '}'],
@@ -25,7 +33,7 @@ Vue.component("product-list", {
                     };
                     var url = RequestHelper.buildHttpRequest("/products.json", params);
 
-                    this.$http.get(url).then((response) => {
+                    Vue.http.get(url).then((response) => {
                         response.json().then((data) => {
                             if(data.products.length == 0) {
                                 this.hasMore = false;
@@ -51,12 +59,13 @@ Vue.component("product-item", {
     data: function() {
         return {
             commentCount: null,
-            loading: true
+            loading: true,
+            selected: false
         };
     },
     methods: {
         setCommentCount: function() {
-            this.$http.get('/comments/' + this.product.id).then((response) => {
+            Vue.http.get('/comments/' + this.product.id).then((response) => {
                 response.json().then((data) => {
                     this.commentCount = data.commentCount;
                     this.loading = false;

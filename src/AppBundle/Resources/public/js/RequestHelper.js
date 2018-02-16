@@ -17,3 +17,5 @@ RequestHelper.buildHttpRequest = function(uri, datas) {
         return uri;
     }
 }
+
+module.exports = RequestHelper;

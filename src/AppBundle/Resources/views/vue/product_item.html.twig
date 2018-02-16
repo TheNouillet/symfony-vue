@@ -4,13 +4,14 @@
 
 {% block template %}
     <div class="col-md-6">
-        <div class="product-item">
+        <div class="product-item" v-bind:class="{ active: selected }">
             <p>Nom: ${product.name}</p>
             <p>Prix: ${product.price}</p>
             <p>Nombre de commentaire: 
                 <span v-if="loading">Chargement...</span>
                 <span v-else>${commentCount}</span>
             </p>
+            <button v-on:click="selected = !selected">Sélectionner</button>
         </div>
     </div>
 {% endblock %}

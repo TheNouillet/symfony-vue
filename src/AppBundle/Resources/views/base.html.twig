@@ -7,7 +7,7 @@
     <title>{% block title %}{% endblock %}</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset("bundles/app/css/styles.css") }}">
+    <link rel="stylesheet" href="{{ asset('builds/app.css') }}">
 </head>
 <body>
     <div id="app">
@@ -20,13 +20,18 @@
         </div>
     </div>
 
-    <script src="{{ asset("bundles/app/js/vue.js") }}"></script>
+    {% include 'AppBundle:vue:product_item.html.twig' %}
+    {% include 'AppBundle:vue:product_list.html.twig' %}
+    {# <script src="{{ asset("bundles/app/js/vue.js") }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.5"></script>
     <script src="https://unpkg.com/vue-infinite-scroll@2.0.2/vue-infinite-scroll.js"></script>
     <script src="{{ asset("bundles/app/js/RequestHelper.js") }}"></script>
-    {% include 'AppBundle:vue:product_item.html.twig' %}
-    {% include 'AppBundle:vue:product_list.html.twig' %}
-    <script src="{{ asset("bundles/app/js/script.js") }}"></script>
+    <script src="{{ asset("bundles/app/js/script.js") }}"></script> #}
+    {% if app.environment == "dev" %}
+    <script src="{{ asset('webpack-dev-server.js') }}"></script>
+    {% endif %}
+    <script src="{{ asset('builds/vendor.js') }}"></script>
+    <script src="{{ asset('builds/app.js') }}"></script>
     {% block js %}
     {% endblock %}
 </body>
