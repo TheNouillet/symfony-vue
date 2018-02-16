@@ -12,7 +12,7 @@ var RequestHelper = {
         if(Object.keys(datas).length) {
             var esc = encodeURIComponent;
             var query = Object.keys(datas)
-                .map(k => esc(k) + '=' + esc(datas[k]))
+                .map(function(k) {esc(k) + '=' + esc(datas[k])})
                 .join('&');
             return uri + "?" + query;
         } else {
