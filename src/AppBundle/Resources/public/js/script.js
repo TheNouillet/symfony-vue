@@ -12,30 +12,31 @@ Vue.component("product-list", {
     },
     methods: {
         loadMore: function() {
+            var that = this;
             if(this.hasMore) {
-                this.busy = true;
-                this.page++;
+                that.busy = true;
+                that.page++;
     
                 // setTimeout pour simuler un long chargement
-                setTimeout(() => {
+                setTimeout(function() {
                     var params = {
-                        "page": this.page,
-                        "product_search[minPrice]": this.minPrice,
-                        "product_search[maxPrice]": this.maxPrice
+                        "page": that.page,
+                        "product_search[minPrice]": that.minPrice,
+                        "product_search[maxPrice]": that.maxPrice
                     };
                     var url = RequestHelper.buildHttpRequest("/products.json", params);
 
-                    this.$http.get(url).then((response) => {
-                        response.json().then((data) => {
+                    that.$http.get(url).then(function(response) {
+                        response.json().then(function(data) {
                             if(data.products.length == 0) {
-                                this.hasMore = false;
+                                that.hasMore = false;
                             } else {
-                                this.productList = this.productList.concat(data.products);
+                                that.productList = that.productList.concat(data.products);
                             }
-                            this.busy = false;
-                        }, (response) => {
-                            this.hasMore = false;
-                            this.busy = false;
+                            that.busy = false;
+                        }, function(response) {
+                            that.hasMore = false;
+                            that.busy = false;
                         });
                     });
                 }, 1000);
@@ -56,15 +57,16 @@ Vue.component("product-item", {
     },
     methods: {
         setCommentCount: function() {
-            this.loading = true;
-            this.$http.get('/comments/' + this.product.id).then((response) => {
-                response.json().then((data) => {
-                    this.commentCount = data.commentCount;
-                    this.loading = false;
+            var that = this;
+            that.loading = true;
+            that.$http.get('/comments/' + that.product.id).then(function(response) {
+                response.json().then(function(data) {
+                    that.commentCount = data.commentCount;
+                    that.loading = false;
                 });
-            }, (response) => {
-                this.commentCount = 0;
-                this.loading = false;
+            }, function(response) {
+                that.commentCount = 0;
+                that.loading = false;
             });
         }
     },
