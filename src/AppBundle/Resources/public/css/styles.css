@@ -1,6 +1,14 @@
+#title .title-addon {
+    color: #338000;
+}
+
 .product-item {
     /* display: inline-block; */
     background-color: #e0e0e0;
     padding: 10px;
     margin-bottom: 20px;
+}
+
+.product-item.active {
+    background-color: #4dff47;
 }

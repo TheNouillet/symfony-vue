@@ -1,0 +1,9 @@
+{% extends "AppBundle:vue:base.html.twig" %}
+
+{% block componentId %}basket{% endblock %}
+
+{% block template %}
+    <div class="basket">
+        <span v-for="product in productList" class="badge badge-pill badge-success">${product.name}</span>
+    </div>
+{% endblock %}
