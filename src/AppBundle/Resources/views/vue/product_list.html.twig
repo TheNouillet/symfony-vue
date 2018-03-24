@@ -7,9 +7,9 @@
         <product-item 
             v-for="product in productList" 
             :key="product.id" 
-            v-bind:product="product" 
-            v-on:addToBasket="addToBasket"
-            v-on:removeFromBasket="removeFromBasket"
+            :product="product" 
+            @addToBasket="addToBasket"
+            @removeFromBasket="removeFromBasket"
         >
         </product-item>
         <span v-if="busy">Chargement</span>

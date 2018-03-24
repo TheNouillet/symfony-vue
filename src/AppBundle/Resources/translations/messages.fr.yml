@@ -1,0 +1,7 @@
+products:
+  item:
+    name: Nom
+    price: Prix
+    comment_count: Nombre de commentaire
+    loading: Chargement
+    select: Selectionner

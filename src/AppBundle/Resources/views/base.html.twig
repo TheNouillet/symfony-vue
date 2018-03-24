@@ -25,16 +25,26 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill.min.js"></script>
-    <script src="{{ asset("bundles/app/js/vue.js") }}"></script>
+    <script src="{{ asset("bundles/app/js/vue.dev.js") }}"></script>
+    {# <script src="{{ asset("bundles/app/js/vue.prod.js") }}"></script> #}
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue-infinite-scroll@2.0.2/vue-infinite-scroll.js"></script>
     <script src="{{ asset("bundles/app/js/vue/Basket.js") }}"></script>
     <script src="{{ asset("bundles/app/js/vue/ProductList.js") }}"></script>
     <script src="{{ asset("bundles/app/js/vue/ProductItem.js") }}"></script>
+    <script src="{{ asset("bundles/app/js/vue/carousel/Carousel.js") }}"></script>
+    <script src="{{ asset("bundles/app/js/vue/carousel/CarouselSlide.js") }}"></script>
     {% include 'AppBundle:vue:basket.html.twig' %}
     {% include 'AppBundle:vue:product_item.html.twig' %}
     {% include 'AppBundle:vue:product_list.html.twig' %}
+    {% include 'AppBundle:vue:carousel/carousel.html.twig' %}
+    {% include 'AppBundle:vue:carousel/carousel_slide.html.twig' %}
     <script src="{{ asset("bundles/app/js/script.js") }}"></script>
+    {# <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Vue.config.devtools = true;
+        });
+    </script> #}
     {% block js %}
     {% endblock %}
 </body>

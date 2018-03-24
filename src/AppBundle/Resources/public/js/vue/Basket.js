@@ -1,4 +1,4 @@
-const basketEventHub = new Vue()
+const basketEventHub = new Vue();
 
 var Basket = Vue.component("basket", {
     template: "#basket",

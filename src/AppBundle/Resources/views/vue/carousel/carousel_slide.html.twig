@@ -1,0 +1,11 @@
+{% extends "AppBundle:vue:base.html.twig" %}
+
+{% block componentId %}carousel-slide{% endblock %}
+
+{% block template %}
+    <transition name="fade">
+        <div class="carousel-slide" v-show="visible">
+            <slot></slot>
+        </div>
+    </transition>
+{% endblock %}

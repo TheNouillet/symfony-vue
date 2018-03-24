@@ -17,6 +17,10 @@ Liste des produits
 {{ form_widget(form.submit) }}
 {{ form_end(form) }}
 
-<product-list products="{{ json_encode(serializeEntities(products)) }}" min-price="{{ form.vars.value.minPrice|default(0) }}" max-price="{{ form.vars.value.maxPrice|default(100) }}"></product-list>
+<product-list 
+    products="{{ json_encode(serializeEntities(products)) }}" 
+    min-price="{{ form.vars.value.minPrice|default(0) }}" 
+    max-price="{{ form.vars.value.maxPrice|default(100) }}">
+</product-list>
 
 {% endblock %}

@@ -4,14 +4,14 @@
 
 {% block template %}
     <div class="col-md-6">
-        <div class="product-item" v-bind:class="{active: selected}">
-            <p>Nom: ${product.name}</p>
-            <p>Prix: ${product.price}</p>
-            <p>Nombre de commentaire: 
-                <span v-if="loading">Chargement...</span>
+        <div class="product-item" :class="{active: selected}">
+            <p>{{"products.item.name"|trans}} : ${product.name}</p>
+            <p :class="{overpriced: product.price > 80}">{{"products.item.price"|trans}} : ${product.price}</p>
+            <p>{{"products.item.comment_count"|trans}} : 
+                <span v-if="loading">{{"products.item.loading"|trans}}...</span>
                 <span v-else>${commentCount}</span>
             </p>
-            <button v-on:click="selectToggle">Selectionner</button>
+            <button @click="selectToggle">{{"products.item.select"|trans}}</button>
         </div>
     </div>
 {% endblock %}
